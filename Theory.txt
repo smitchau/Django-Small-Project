@@ -1,0 +1,108 @@
+Q.1) Why Django should be used for web-development? Explain how you can create a project in Django?
+
+-> Django is ideal for web development due to its high-level framework, extensive built-in features, scalability,
+   robust security measures, and thriving community support.
+ - Django is used to built small and large web-applications.
+	
+-> Create Django Project:-
+
+	* pip install virtualenv   ->This line Install Environment. benefit from the virtual environment since
+				     packages can be installed confidently and will not interfere with another
+				     project’s environment.
+
+	* python -m venv myenv	   ->This line Create Environment.
+
+	* cd myenv		   ->This line Enter the myenv Forder
+
+	* Scripts\activate	   ->Activate the environment
+
+	* pip install Django       ->This line install the Django in Project
+
+	* django-admin startproject myproject   ->This line Create myproject forder
+
+	* cd myproject             ->This line Enter the myproject Forder
+
+	* django-admin startapp myapp  ->This line create myapp
+
+	* python manage.py migrate 
+
+	* python manage.py createsuperuser ->This line create super user that means admin login name or password
+
+	* python manage.py runserver
+
+_________________________________________________________________________________________________________________
+
+Q.2)How to check installed version of django?
+
+	* Django-admin --version
+_________________________________________________________________________________________________________________
+
+Q.3)Explain what does django-admin.py make messages command is used for?
+
+-> django-admin.py make messages command helps in preparing Django projects for translation.
+   It scans the codebase and extracts all the text marked for translation. These texts are
+   usually wrapped in gettext or ugettext functions.
+   The command collects these strings and stores them in a message file (.po file) within the locale directory.
+   Translators can then use this file to translate the strings into different languages.
+   After translation, the message file is compiled into a binary format (.mo files), enabling Django to 
+   display the appropriate language to users based on their preferences.
+_________________________________________________________________________________________________________________
+
+Q.4)What is Django URLs ? make program to create django urls.
+
+-> Django URLs are patterns that define how incoming requests are mapped to views in a Django web application.
+ They act as a bridge between a user's request and the corresponding view that should handle it.
+ URLs in Django are defined using regular expressions or simple strings, allowing for dynamic URL routing.
+
+-> Simple program example : urls.py file
+
+--------------------------------------------------------
+# urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+]
+-------------------------------------------------------------
+* Explain urls.py file.
+- We import the path function from django.urls module.
+- We import the views module (assuming it contains functions named home, about, and contact).
+- We define a list called urlpatterns which contains instances of path.
+- Each path instance maps a URL pattern to a specific view function.
+- The first argument of path represents the URL pattern (e.g., an empty string for the homepage).
+- The second argument is the view function that should handle the request corresponding to that URL pattern.
+- The third argument, name, provides a unique identifier for the URL pattern, which can be used to refer
+  to it in templates or other parts of the code.
+_________________________________________________________________________________________________________________
+
+Q.5)What is a QuerySet?Write program to create a new Post object in database:
+
+-> A QuerySet in Django is essentially a list of objects retrieved from the database, based on a specific query.
+   It allows you to read data from the database, filter, order, and manipulate it before rendering it in your
+   templates or sending it as a response.
+
+-> Simple program example : models.py file
+----------------------------------------------------------
+# models.py
+
+from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+_________________________________________________________________________________________________________________
+
+Q.6)Mention what command line can be used to load data into Django?
+
+-> To load data into Django, you can use the manage.py command with the loaddata option followed by
+   the name of the fixture file containing your data.
+- python manage.py makemigrations 
+- python manage.py migrate 
+
+__________________________________________________THANK YOU______________________________________________________

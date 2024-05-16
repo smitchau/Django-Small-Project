@@ -1,0 +1,54 @@
+<!-- admin/templates/admin/product_sub_category_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Sub Category Details</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        th {
+            padding: 2rem 4rem 
+        }
+
+        td {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <legend>PRODUCT DETAIL<span style="margin-left: 80%;"><a href="{% url "home" %}">Home</a></span></legend>
+    <center>
+    <table border="1" style="text-align: center;">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Model</th>
+                <th>RAM</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in products %}
+            <tr>
+                <td>{{ i.pk }}</td>
+                <td>{{ i.pid.product_name }}</td>
+                <td>{{ i.p_price }}</td>
+                <td><img src="{{ i.p_image.url }}" alt="Product Image" style="width: 100px; height: 100px;"></td>
+                <td>{{ i.p_model }}</td>
+                <td>{{ i.p_ram }}</td> 
+                <td><a href="{% url "edit_product" i.pk %}">Edit</a></td>
+                <td><a href="{% url "delete_product" i.pk %}" style="color: red;">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+</body>
+</html>

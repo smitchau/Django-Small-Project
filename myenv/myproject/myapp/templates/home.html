@@ -1,0 +1,78 @@
+<!-- admin/templates/admin/product_sub_category_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Sub Category Details</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        th {
+            padding: 2rem 4rem 
+        }
+
+        td {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <legend>PRODUCTS 
+        <span style="float: right;">
+            <form action="{% url "search_item" %}" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="form-outline" data-mdb-input-init>
+                    <input id="search-focus" type="search" name="search" id="form1" class="form-control" placeholder="Search Item" />
+                    <label class="form-label" for="form1"></label>
+                    </div>
+                    
+                    <button class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                        
+                    </button>
+                </div>
+            </form>
+        </span>
+    </legend>
+    <center>
+        {% if msg %}
+            <div class="alert alert-success" role="alert">
+            {{msg}}
+          </div>
+        
+        {% elif msg1 %}
+        <div class="alert alert-info">
+            {{msg1}}
+            </div>
+        {% endif %}
+    </center>
+    <center>
+        
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>View Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr style="text-align: center;">
+                <td>{{product.pk}}</td>
+                <td>{{ product.product_name }}</td>
+                <td><a href="{% url "p_details" product.pk %}">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url "add_product" %}"><button>ADD PRODUCT</button></a>
+</center>
+
+</body>
+</html>
